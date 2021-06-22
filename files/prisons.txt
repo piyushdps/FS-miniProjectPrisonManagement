@@ -1,0 +1,1 @@
+[{"name":"Tihar","id":1,"occupancy":300},{"name":"Hajipur","id":2,"occupancy":100},{"name":"Kaala Pani","occupancy":300,"id":3}]
