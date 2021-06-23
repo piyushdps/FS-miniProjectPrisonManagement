@@ -10,6 +10,7 @@ const { json } = require('express');
 router.get("/", async (req, res) => {
     let a = getDataFromFile("./files/prisoners.txt", DefaultPrisonersList);
     // console.log(result)
+    a=JSON.parse(a)
     res.json(a);
   });
 
@@ -48,20 +49,50 @@ router.get("/", async (req, res) => {
   
     let listOfPrisoner = JSON.parse(dataFromFile);
   
-    let length = listOfPrisoner.length + 1;
-  
+    let length = listOfPrisoner[listOfPrisoner.length-1].id + 1;
     let object1 = {
       name: req.body.name,
       crime: req.body.crime,
       id: length,
       prisonId:req.body.prisonId
     };
-    listOfPrisoner.push(object1);
+
+    const prisonData  = JSON.parse(fs.readFileSync("./files/prisons.txt", { encoding: "utf8", flag: "r" }));
+
+try {
   
-    fs.writeFileSync("./files/prisoners.txt", JSON.stringify(listOfPrisoner));
+  for(let i=0 ; i<prisonData.length ; i++){
+    if (req.body.prisonId === prisonData[i].id){
+      object1.prisonName = prisonData[i].name
+      listOfPrisoner.push(object1);
+
+      fs.writeFileSync("./files/prisoners.txt", JSON.stringify(listOfPrisoner));
+    
+      res.json(JSON.stringify(listOfPrisoner));
+      return;
+    }
+  }
+  res.status(401). json({message:'Cannot find a prison'});
+return
+
   
-    res.json(JSON.stringify(listOfPrisoner));
+} catch (error) {
+  res.status(401). json({message:'Server error'});
+  return
+  
+}
+
+    
+   
   });
+
+
+
+
+
+
+
+
   
   router.put("/:id", async (req, res) => {
     let { id } = req.params;

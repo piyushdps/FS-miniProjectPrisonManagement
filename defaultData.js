@@ -4,8 +4,8 @@ const DefaultPrisonsList = [
     { name: "Hajipur", id: 2, occupancy: 100 },
   ];
   const DefaultPrisonersList = [
-    { name: "Saurya", id: 1,crime:'Marigowda ka baat maan liya' , prisonId: 2},
-    { name: "Siddhant", id: 2, crime: 'Mithuna pr crush h isko' , prisonId:1},
+    { name: "Saurya", id: 1,crime:'Murder of gyaan' , prisonName:"Hajipur" ,  prisonId: 2},
+    { name: "Siddhant", id: 2, crime: ' Smoking inside acharya campus' , prisonId:1 , prisonName:"Tihar"},
   ];
 
 

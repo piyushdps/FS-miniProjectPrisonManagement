@@ -16,17 +16,17 @@ app.use(express.json());
 
 
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   console.log(req.params);
 
   res.json({ id: req.params.id3 }).status(404);
 });
 
-app.use('/' ,userRoutes )
+app.use('/api' ,userRoutes )
 
-app.use('/prisons',loginCheckMiddleWare ,prisonsRoutes )
+app.use('/api/prisons',loginCheckMiddleWare ,prisonsRoutes )
 
-app.use('/prisoners',loginCheckMiddleWare ,prisonersRoutes )
+app.use('/api/prisoners',loginCheckMiddleWare ,prisonersRoutes )
 
 
 
